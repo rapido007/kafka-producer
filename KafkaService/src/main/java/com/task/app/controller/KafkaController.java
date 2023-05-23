@@ -25,5 +25,12 @@ public class KafkaController
 		return status;
 	}
 	
+	@RequestMapping("getFromMongo")
+	public String getFromMongoToKafkaTopic2()
+	{
+		String msg= service.messagesFromMongoDB();
+		return msg;
+	}
+	
 
 }
