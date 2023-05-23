@@ -27,7 +27,7 @@ public class KafkaService
 		RestTemplate restTemp = new RestTemplate();
 		try
 		{
-			restTemp.getForObject("http://localhost:8082/message/addMessage?id="+id+"&message="+val+"",Message.class);
+			restTemp.getForObject("http://localhost:8084/message/addMessage?id="+id+"&message="+val+"",Message.class);
 		}
 		catch(Exception ex)
 		{
