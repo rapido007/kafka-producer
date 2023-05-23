@@ -24,6 +24,7 @@ public class KafkaService
 	{
 		Message msg = new Message(id, val);
 		template.send("test1", msg);
+		System.out.println("set");
 		RestTemplate restTemp = new RestTemplate();
 		try
 		{
