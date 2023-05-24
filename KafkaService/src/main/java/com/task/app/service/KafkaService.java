@@ -39,21 +39,21 @@ public class KafkaService
 		return "Message generated successfully";
 	}
 	
-	public String messagesFromMongoDB()
+	public Message messagesFromMongoDB(int id)
 	{
-		List<Message> list = null;
+		Message msg = null;
 		System.out.println("set");
 		RestTemplate restTemp = new RestTemplate();
 		try
 		{
-			list = restTemp.getForObject("http://localhost:8084/message/getAllMessages",List.class);
+			msg = restTemp.getForObject("http://localhost:8084/message/getMessage?id="+id+"",Message.class);
 		}
 		catch(Exception ex)
 		{
 			System.out.println(ex);
 		}
-		template.send("test2", list);
-		return "Data set from MongoDB to Kafka";
+		template.send("test2", msg);
+		return msg;
 	}
 	
 	

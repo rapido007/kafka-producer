@@ -2,7 +2,10 @@ package com.task.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.task.app.model.Message;
 import com.task.app.service.KafkaService;
 
 @RestController
@@ -19,16 +22,16 @@ public class KafkaController
 	
 //	http://localhost:9091/kafka/send?id=1&val=Third
 	@RequestMapping("send")
-	public String generateMessage(int id,String val)
+	public String generateMessage(@RequestParam int id,@RequestParam String val)
 	{
 		String status = service.generateMessage(id,val);
 		return status;
 	}
 	
 	@RequestMapping("getFromMongo")
-	public String getFromMongoToKafkaTopic2()
+	public Message getFromMongoToKafkaTopic2(@RequestParam int id)
 	{
-		String msg= service.messagesFromMongoDB();
+		Message msg= service.messagesFromMongoDB(id);
 		return msg;
 	}
 	
